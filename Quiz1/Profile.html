@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile – Gabriella Putri Atmaja Adi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Archivo:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tooplate-split-portfolio.css">
+    <style>
+        /* ---- Profile page extra styles ---- */
+
+        /* Top hero banner */
+        .profile-hero {
+            padding: 140px 5% 60px;
+            background: var(--bg-light);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* Side-by-side layout: photo on the left, text on the right */
+        .profile-hero-inner {
+            display: flex;
+            align-items: flex-start;
+            gap: 2.5rem;
+            flex-wrap: wrap;   /* wraps on small screens so photo goes on top */
+        }
+
+        /* The circular profile photo */
+        .profile-hero-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top center;
+            border: 3px solid var(--accent);
+            flex-shrink: 0;   /* don't let the photo shrink */
+        }
+
+        /* The text column next to the photo */
+        .profile-hero-text {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .profile-hero h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 0.5rem;
+        }
+        .profile-hero .profile-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        .profile-hero .profile-tagline {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .profile-hero .profile-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .profile-hero .profile-contacts a {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .profile-hero .profile-contacts a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Sections wrapper */
+        .profile-sections {
+            padding: 60px 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Each section block */
+        .profile-block {
+            margin-bottom: 4rem;
+        }
+        .profile-block h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 0.4rem;
+        }
+        /* Accent underline under section titles */
+        .profile-block .section-divider {
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            margin-bottom: 1.8rem;
+        }
+
+        /* Card used for education / org items */
+        .profile-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.2rem;
+            transition: border-color 0.3s;
+        }
+        .profile-card:hover {
+            border-color: rgba(255,255,255,0.2);
+        }
+        .profile-card h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+        .profile-card .card-meta {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+        }
+        .profile-card p,
+        .profile-card ul {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .profile-card ul {
+            padding-left: 1.4rem;
+        }
+        .profile-card ul li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Skills grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 600px) {
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+        .skill-group h4 {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .skill-tag {
+            padding: 0.4rem 0.9rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Languages */
+        .lang-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .lang-name {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-width: 110px;
+        }
+        .lang-detail {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#ff3366" stroke-width="3"/>
+                <path d="M 30 40 L 50 60 L 70 40" fill="none" stroke="#ff3366" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="50" cy="70" r="3" fill="#ff3366"/>
+            </svg>
+            <span>Killer Queen</span>
+        </a>
+        <nav>
+            <ul class="desktop-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Profile.html" class="active">Profile</a></li>
+                <li><a href="Local food.html">Local Food</a></li>
+                <li><a href="Tourist places.html">Tourist Places</a></li>
+                <li><a href="Hometown.html">Hometown</a></li>
+            </ul>
+        </nav>
+        <div class="menu-icon">
+            <span></span>
+        </div>
+    </header>
+
+    <div class="mobile-nav">
+        <button class="mobile-nav-close" aria-label="Close menu">&times;</button>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Profile.html">Profile</a></li>
+            <li><a href="Local food.html">Local Food</a></li>
+            <li><a href="Tourist places.html">Tourist Places</a></li>
+            <li><a href="Hometown.html">Hometown</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <p>Let's create something amazing together</p>
+            <a href="mailto:gabriellasatmaja@gmail.com">gabriellasatmaja@gmail.com</a>
+        </div>
+    </div>
+
+    <main>
+
+        <!-- ===== HERO / ABOUT ===== -->
+        <div class="profile-hero">
+            <div class="profile-hero-inner">
+
+                <!-- Personal photo — file is img/me-2.jpeg -->
+                <img class="profile-hero-photo"
+                     src="img/me-2.jpeg"
+                     alt="Gabriella Putri Atmaja Adi">
+
+                <!-- Text content next to the photo -->
+                <div class="profile-hero-text">
+                    <h1>Gabriella Putri Atmaja Adi</h1>
+                    <p class="profile-subtitle">Surabaya, Jawa Timur, Indonesia · SMA Kristen Petra 1 · Science (IPA)</p>
+                    <p class="profile-tagline">
+                        A student with a strong interest in information and communication technology.
+                        I actively participate in competitions and organisational activities, and I believe in taking curiosity as a method to enjoy the world.
+                    </p>
+                    <div class="profile-contacts">
+                        <a href="https://wa.me/6282231108445" target="_blank">📱 WhatsApp</a>
+                        <a href="mailto:gabriellasatmaja@gmail.com">📧 gabriellasatmaja@gmail.com</a>
+                        <a href="https://www.linkedin.com/in/gabriella-atmaja-1b658b378" target="_blank">🔗 LinkedIn</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="profile-sections">
+
+            <!-- ===== EDUCATION ===== -->
+            <div class="profile-block">
+                <h2>Education</h2>
+                <div class="section-divider"></div>
+
+                <div class="profile-card">
+                    <h3>SMA Kristen Petra 1 Surabaya</h3>
+                    <p class="card-meta">Science (IPA) · July 2022 – May 2025</p>
+                    <ul>
+                        <li>Top 3 finalist in the inter-grade short story competition (2022) — 100+ participants.</li>
+                        <li>Participated in the national-level Schematics competition organised by Institut Teknologi Sepuluh Nopember, Surabaya.</li>
+                        <li>Actively involved in informatics-related subjects and activities.</li>
+                    </ul>
+                </div>
+
+                <div class="profile-card">
+                    <h3>SMP Kristen Kalam Kudus Makassar</h3>
+                    <p class="card-meta">July 2020 – July 2022</p>
+                    <ul>
+                        <li>Participated in the inter-grade batik competition (2020).</li>
+                        <li>Member of the Batik Extracurricular (2020–2021).</li>
+                        <li>Member of the Debate Club (2022).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== ORGANISATION / VOLUNTEER ===== -->
+            <div class="profile-block">
+                <h2>Organisation &amp; Volunteer Experience</h2>
+                <div class="section-divider"></div>
+
+                <div class="profile-card">
+                    <h3>Gereja MDC (Masa Depan Cerah)</h3>
+                    <p class="card-meta">Usher · Singer · Event Organiser · November 2024 – Present</p>
+                    <ul>
+                        <li>Greet people, help organise attendees, and deliver church announcements during weekly services.</li>
+                        <li>Participate in church ministry as a singer.</li>
+                        <li>Coordinate weekly service operations and ensure the programme follows the scheduled rundown.</li>
+                        <li>Manage shared audio equipment (microphones) across multiple teams.</li>
+                        <li>Collaborate with worship, media, and ministry teams for smooth transitions.</li>
+                        <li>Monitor timing and handle on-site issues during services.</li>
+                    </ul>
+                </div>
+
+                <div class="profile-card">
+                    <h3>Gereja MDC – Youth Camp</h3>
+                    <p class="card-meta">Event Organiser · January 2025 – July 2025</p>
+                    <ul>
+                        <li>Coordinated event participants with the entire team.</li>
+                        <li>Served as database form supervisor and manager for participant applications.</li>
+                        <li>Sent confirmation messages and payment reminders to participants before camp.</li>
+                        <li>Acted as the organisation's representative to third parties and vendors.</li>
+                        <li>Assisted with organising and preparing supplies.</li>
+                    </ul>
+                </div>
+
+                <div class="profile-card">
+                    <h3>SMA Petra – Petra Bazaar</h3>
+                    <p class="card-meta">Exhibitor · July 2022 – December 2024</p>
+                    <ul>
+                        <li>Actively participated as an exhibitor in the school bazaar held every semester.</li>
+                        <li>Worked in roles including Marketing, Merchandising, and Finance.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== AWARDS ===== -->
+            <div class="profile-block">
+                <h2>Awards</h2>
+                <div class="section-divider"></div>
+
+                <div class="profile-card">
+                    <h3>1st Place — Chemistry Smart Challenge 2022</h3>
+                    <p class="card-meta">Universitas Hasanuddin · National Level</p>
+                    <ul>
+                        <li>National competition focused on innovating solutions for food waste and developing valuable products from it.</li>
+                        <li>Presented research paper to a panel of university lecturers.</li>
+                        <li>Won 1st Place among 20 participating teams.</li>
+                    </ul>
+                </div>
+
+                <div class="profile-card">
+                    <h3>Favorite Winner — Innovation Challenge: Ecohack 2024</h3>
+                    <p class="card-meta">Western Sydney University · National Level</p>
+                    <ul>
+                        <li>National-level pitching competition.</li>
+                        <li>Developed a creative and original product innovation idea with the team.</li>
+                        <li>Received the Favourite Winner award among 40+ participants.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== SKILLS ===== -->
+            <div class="profile-block">
+                <h2>Skills</h2>
+                <div class="section-divider"></div>
+
+                <div class="skills-grid">
+                    <div class="skill-group">
+                        <h4>Hard Skills – Programming</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">C</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">CSS</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Hard Skills – Other</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Traditional Design</span>
+                            <span class="skill-tag">Digital Design</span>
+                            <span class="skill-tag">Remo Dance</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Soft Skills</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Leadership</span>
+                            <span class="skill-tag">Research</span>
+                            <span class="skill-tag">Time Management</span>
+                            <span class="skill-tag">Communication</span>
+                            <span class="skill-tag">Problem Solving</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== LANGUAGES ===== -->
+            <div class="profile-block">
+                <h2>Languages</h2>
+                <div class="section-divider"></div>
+
+                <div class="lang-item">
+                    <span class="lang-name">English</span>
+                    <span class="lang-detail">IELTS Academic — Overall Band 7.5 (2024)</span>
+                </div>
+                <div class="lang-item">
+                    <span class="lang-name">Indonesian</span>
+                    <span class="lang-detail">Native</span>
+                </div>
+            </div>
+
+        </div><!-- end .profile-sections -->
+    </main>
+
+    <footer>
+        <p>Make ways for our future. Try contacting <a href="mailto:gabriellasatmaja@gmail.com">us</a></p>
+    </footer>
+
+    <script src="tooplate-split-scripts.js"></script>
+</body>
+</html>
